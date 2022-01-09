@@ -1,60 +1,84 @@
-const video = document.getElementById("video");
-let predictedAges = [];
+const video = document.getElementById('video')
 
 Promise.all([
-  faceapi.nets.tinyFaceDetector.loadFromUri("/models"),
-  faceapi.nets.faceLandmark68Net.loadFromUri("/models"),
-  faceapi.nets.faceRecognitionNet.loadFromUri("/models"),
-  faceapi.nets.faceExpressionNet.loadFromUri("/models"),
-  faceapi.nets.ageGenderNet.loadFromUri("/models")
-]).then(startVideo);
+    faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+    faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+    faceapi.nets.ssdMobilenetv1.loadFromUri('/models') //heavier/accurate version of tiny face detector
+]).then(start)
 
-function startVideo() {
-  navigator.getUserMedia(
-    { video: {} },
-    stream => (video.srcObject = stream),
-    err => console.error(err)
-  );
+function start() {
+    document.body.append('Models Loaded')
+    
+    navigator.getUserMedia(
+        { video:{} },
+        stream => video.srcObject = stream,
+        err => console.error(err)
+    )
+    
+    //video.src = '../videos/speech.mp4'
+    console.log('video added')
+    recognizeFaces()
+
 }
 
-video.addEventListener("playing", () => {
-  const canvas = faceapi.createCanvasFromMedia(video);
-  document.body.append(canvas);
+async function recognizeFaces() {
 
-  const displaySize = { width: video.width, height: video.height };
-  faceapi.matchDimensions(canvas, displaySize);
+  console.log("gsicht alder")
+    const labeledDescriptors = await loadLabeledImages()
+    console.log(labeledDescriptors)
+    const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
 
-  setInterval(async () => {
-    const detections = await faceapi
-      .detectAllFaces(video, new faceapi.TinyFaceDetectorOptions())
-      .withFaceLandmarks()
-      .withFaceExpressions()
-      .withAgeAndGender();
-    const resizedDetections = faceapi.resizeResults(detections, displaySize);
 
-    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    video.addEventListener('play', async () => {
+        console.log('Playing')
+        const canvas = faceapi.createCanvasFromMedia(video)
+        document.body.append(canvas)
 
-    faceapi.draw.drawDetections(canvas, resizedDetections);
-    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
-    faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+        const displaySize = { width: video.width, height: video.height }
+        faceapi.matchDimensions(canvas, displaySize)
 
-    const age = resizedDetections[0].age;
-    const interpolatedAge = interpolateAgePredictions(age);
-    const bottomRight = {
-      x: resizedDetections[0].detection.box.bottomRight.x - 50,
-      y: resizedDetections[0].detection.box.bottomRight.y
-    };
+        
 
-    new faceapi.draw.DrawTextField(
-      [`${faceapi.utils.round(interpolatedAge, 0)} years`],
-      bottomRight
-    ).draw(canvas);
-  }, 100);
-});
+        setInterval(async () => {
+            const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors()
 
-function interpolateAgePredictions(age) {
-  predictedAges = [age].concat(predictedAges).slice(0, 30);
-  const avgPredictedAge =
-    predictedAges.reduce((total, a) => total + a) / predictedAges.length;
-  return avgPredictedAge;
+            const resizedDetections = faceapi.resizeResults(detections, displaySize)
+
+            canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
+
+            const results = resizedDetections.map((d) => {
+                return faceMatcher.findBestMatch(d.descriptor)
+            })
+            results.forEach( (result, i) => {
+                const box = resizedDetections[i].detection.box
+                const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
+                drawBox.draw(canvas)
+                console.log("box")
+            })
+        }, 100)
+
+
+        
+    })
+}
+
+
+function loadLabeledImages() {
+
+    console.log("load labled images");
+    const labels = ['Black Widow', 'Captain America', 'Hawkeye' , 'Jim Rhodes', 'Tony Stark', 'Thor', 'Captain Marvel']
+    //const labels = ['Prashant Kumar'] // for WebCam
+    return Promise.all(
+        labels.map(async (label)=>{
+            const descriptions = []
+            for(let i=1; i<=2; i++) {
+                const img = await faceapi.fetchImage(`https://raw.githubusercontent.com/WebDevSimplified/Face-Recognition-JavaScript/master/labeled_images/${label}/${i}.jpg`)
+                const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
+                //console.log(label + i + JSON.stringify(detections))
+                descriptions.push(detections.descriptor)
+            }
+            document.body.append(label+' Faces Loaded | ')
+            return new faceapi.LabeledFaceDescriptors(label, descriptions);
+        })
+    )
 }
