@@ -54,6 +54,7 @@ async function recognizeFaces() {
                 const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
                 drawBox.draw(canvas)
                 console.log("box")
+                console.log(descriptor)
             })
         }, 100)
 
