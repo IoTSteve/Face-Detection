@@ -53,8 +53,10 @@ async function recognizeFaces() {
                 const box = resizedDetections[i].detection.box
                 const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
                 drawBox.draw(canvas)
-                console.log("box")
+                //console.log("box")
+                console.log(drawBox.options.label)
                
+            
             })
         }, 100)
 
