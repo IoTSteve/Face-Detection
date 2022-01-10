@@ -1,4 +1,5 @@
 const video = document.getElementById('video')
+//let cleanLabel = 0;
 
 Promise.all([
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
@@ -54,8 +55,17 @@ async function recognizeFaces() {
                 const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
                 drawBox.draw(canvas)
                 //console.log("box")
-                console.log(drawBox.options.label)
+                //console.log(drawBox.options.label)
+
+                var cleanLabel = drawBox.options.label.replace(/[^a-zA-Z]+/g, '');
+                //console.log(cleanLabel);
                
+                if(cleanLabel == "Steve") {
+                    console.log("Schrank freigeschaltet")
+                }
+                else {
+                    console.log("Schrank gesperrt")
+                }
             
             })
         }, 100)
@@ -86,3 +96,5 @@ function loadLabeledImages() {
         })
     )
 }
+
+
