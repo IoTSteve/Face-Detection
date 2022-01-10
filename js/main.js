@@ -29,7 +29,7 @@ async function recognizeFaces() {
     const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
 
 
-    video.addEventListener('play', async () => {
+    
         console.log('Playing')
         const canvas = faceapi.createCanvasFromMedia(video)
         document.body.append(canvas)
@@ -54,13 +54,13 @@ async function recognizeFaces() {
                 const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
                 drawBox.draw(canvas)
                 console.log("box")
-                console.log(descriptor)
+               
             })
         }, 100)
 
 
         
-    })
+   
 }
 
 
