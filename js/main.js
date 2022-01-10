@@ -62,9 +62,50 @@ async function recognizeFaces() {
                
                 if(cleanLabel == "Steve") {
                     console.log("Schrank freigeschaltet")
+
+                    var context = canvas.getContext('2d');
+                    var centerX = canvas.width / 2;
+                    var centerY = canvas.height / 2;
+                    var radius = 70;
+                    
+                    context.fillStyle = "#7fe677";
+                    context.fillRect(750, 170, 300, 40);
+                    context.fillStyle = "black";
+                    context.font = "23px Verdana"
+                    context.fillText("Schrank freigeschaltet", centerX + 130, centerY - 160)
+               
+
+
+                    context.beginPath();
+                    context.arc(centerX + 270, centerY - 270, radius, 0, 2 * Math.PI, false);
+                    context.fillStyle = 'green';
+                    context.fill();
+                 
+                    context.lineWidth = 5;
+                    context.strokeStyle = '#003300';
+                    context.stroke();
                 }
                 else {
                     console.log("Schrank gesperrt")
+
+                    var context = canvas.getContext('2d');
+                    var centerX = canvas.width / 2;
+                    var centerY = canvas.height / 2;
+                    var radius = 70;
+                    
+                    context.fillStyle = "#e67b77";
+                    context.fillRect(750, 170, 300, 40);
+                    context.fillStyle = "black";
+                    context.font = "23px Verdana"
+                    context.fillText("Schrank gesperrt", centerX + 150, centerY - 160)
+
+                    context.beginPath();
+                    context.arc(centerX + 270, centerY - 270, radius, 0, 2 * Math.PI, false);
+                    context.fillStyle = 'red';
+                    context.fill();
+                    context.lineWidth = 5;
+                    context.strokeStyle = '#700d0d';
+                    context.stroke();
                 }
             
             })
@@ -75,6 +116,23 @@ async function recognizeFaces() {
    
 }
 
+
+function drawCircle() {
+
+    
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 70;
+
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'green';
+      context.fill();
+      context.lineWidth = 5;
+      context.strokeStyle = '#003300';
+      context.stroke();
+}
 
 function loadLabeledImages() {
 
