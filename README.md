@@ -72,8 +72,14 @@ Nun müssen Sie den Code, in dem von Ihnen bevorzugten Entwicklungsumgebung, öf
 
 
 ## Structure / Aufbau
+Da das Projekt in kurzer Zeit entstanden ist, haben wir das Öffnen und Schließen des Schrankes simuliert, anhand von einem roten oder grünen Punkt bei dem dann jeweils *Schrank gesperrt* oder *Schrank freigeschaltet* steht.
+<br>
 
-* `async function recognizeFaces() {`: In der Funktion sind die Hauptbestandteile des Codes enthalte. Es ist eine asynchrone Funktion, die über den Event Loop, außerhalb des üblichen Kontrollflusses läuft. Und somit nur dann auslöst wenn etwas passiert. Es werden in dieser Funktion mehrerer `await` verwendet, das erlaubt den Code erst weiter laufen zu lassen, wenn das ausgeführt ist was dabei steht. (siehe Zweile 35 und 53) Hier, in Zeile 35, wird als erste gewartet bis das Bild geladen ist. In Zeile 53 ist zusätzlich ein Intervall eingebaut in dem das `await` angwandt wird. Es läuft erst weiter wenn alle Gesichter mit Merkmalen und Beschreibung erkannt wurden.  
+* `async function recognizeFaces() {`: In der Funktion sind die Hauptbestandteile, des Codes, enthalte. Es ist eine asynchrone Funktion, die über den Event Loop, außerhalb des üblichen Kontrollflusses läuft. Und somit nur dann auslöst, wenn etwas passiert. Es werden in dieser Funktion mehrerer 'await' verwendet, das erlaubt den Code erst weiter laufen zu lassen, wenn das ausgeführt ist, was dabei steht. (siehe Zweile 35 und 53) Hier, in Zeile 35, wird als erste gewartet bis das Bild geladen ist.
+    * `setInterval(async () => {`: In Zeile 53 ist zusätzlich ein Intervall eingebaut in dem das 'await' angwandt wird. Es läuft erst weiter, wenn alle Gesichter mit Merkmalen und Beschreibung erkannt wurden. In dem ganzen Intervall wird abgefragt, wie viele Gesichter erkannt werden und welches davon in den Modellen enthalten sind.
+        * `results.forEach((result, i) => {`: Diese 'forEach'Schleife ist dafür da, dass bei jedem Ergebnis ein Rahmen um das erkannte Gesicht gezeichnet wird, wer die Person ist und zu wie sicher es ist, dass es diese Person ist. Um alles richtig anzeigen zu können braucht es Bedigungen.
+            * `if (cleanLabel == "Steve") {`: Hier wird geschaut, dass, wenn ein Gesicht erkannt wird, dass ein Model ist (bzw. der Name des Models zugeordnet wird). Und da es verifiziert ist, wird ein grünen Punkt und *Schrank freigeschaltet* gezeichnet.
+            * `else {`: Wenn das nicht der Fall ist, wird ein roter Punkt und *Schrank gesperrt* gezeichnet.
 
 
 ## Future Work
