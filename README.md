@@ -72,6 +72,19 @@ Nun müssen Sie den Code, in dem von Ihnen bevorzugten Entwicklungsumgebung, öf
 
 
 ## Structure / Aufbau
+
+Since the project was created in a short time, we simulated the opening and closing of the cabinet with the help of a red or green dot that says *cabinet locked* or *cabinet unlocked*.
+<br>
+
+* `async function recognizeFaces() {`: The main components of the code are contained in the function. It is an asynchronous function that runs outside the usual control flow via the event loop. And therefore only triggers when something happens. Several 'awaits' are used in this function, which allows the code to continue running only when what it says has been executed. (see lines 35 and 53) Here, in line 35, the first thing to do is to wait until the image is loaded.
+    * `setInterval(async () => {`: In line 53 there is an additional interval in which the 'await' is applied. It only continues when all faces with features and descriptions have been recognised. In the whole interval it is queried how many faces are recognised and which of them are contained in the models.
+        * `results.forEach((result, i) => {`: This 'forEach' loop is there to draw a frame around the recognised face for each result, who the person is and how sure it is that it is that person. In order to display everything correctly, it needs conditions.
+            * `if (cleanLabel == "Steve") {`: Here it is checked that if a face is recognised, it is a model (or the model's name is assigned). And since it is verified, a green dot and *locker unlocked* is drawn.
+            * `else {`: If this is not the case, a red dot and *cabinet locked* is drawn.
+* `function loadLabeledImages() {`: 
+
+---
+
 Da das Projekt in kurzer Zeit entstanden ist, haben wir das Öffnen und Schließen des Schrankes simuliert, anhand von einem roten oder grünen Punkt bei dem dann jeweils *Schrank gesperrt* oder *Schrank freigeschaltet* steht.
 <br>
 
@@ -80,9 +93,12 @@ Da das Projekt in kurzer Zeit entstanden ist, haben wir das Öffnen und Schließ
         * `results.forEach((result, i) => {`: Diese 'forEach'Schleife ist dafür da, dass bei jedem Ergebnis ein Rahmen um das erkannte Gesicht gezeichnet wird, wer die Person ist und zu wie sicher es ist, dass es diese Person ist. Um alles richtig anzeigen zu können braucht es Bedigungen.
             * `if (cleanLabel == "Steve") {`: Hier wird geschaut, dass, wenn ein Gesicht erkannt wird, dass ein Model ist (bzw. der Name des Models zugeordnet wird). Und da es verifiziert ist, wird ein grünen Punkt und *Schrank freigeschaltet* gezeichnet.
             * `else {`: Wenn das nicht der Fall ist, wird ein roter Punkt und *Schrank gesperrt* gezeichnet.
+* `function loadLabeledImages() {`: 
 
 
 ## Future Work
 
 Was noch fehlt, und was die nächsten Schritte wären, um es ggf. umzusetzen:
 * Das Ganze anhand von einem richtigen Prototyp umsetzen
+* Mehrere Models einbinden
+* Das „trainieren“ einfacher gestalten, sodass man keine Bilder in den Ordner laden muss, sondern einfach nur eine Aufnahme machen muss.
