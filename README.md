@@ -43,7 +43,7 @@ In order to be able to use the code, you must create a new subfolder in the *lab
 In order for the code to recognise the new model, you must now change the name in the *main.js* in line 63 `if(cleanLabel == "Steve") {`. So replace `Steve` with the name of the subfolder you just created. It is also important that in line 146 `for(let i=1; i<=2; i++) {` the 2 is replaced by the number of total images. This means that if you have loaded two pictures into the folder you have just created, the total number of pictures is 4, as there are already two pictures in the example folder 'Steve'. 
 You can repeat this as many times as you like, depending on how many people you want to include. It is important that the folder names are listed in line 63 and that the number of pictures in line 146 is correct. 
 <br>
-You are almost there, the only thing left to do is **right click** on the `index.html` and then click on **Open with Live Server**. Now the programme starts automatically and opens it in your browser. <mark>(It is important that it is Google Chrome, other browsers are usually not supported!)<mark>
+You are almost there, the only thing left to do is **right click** on the `index.html` and then click on **Open with Live Server**. Now the programme starts automatically and opens it in your browser. <mark>(It is important that it is Google Chrome, other browsers are usually not supported!)</mark>
 <br>
 
 ---
