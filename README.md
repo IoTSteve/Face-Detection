@@ -10,7 +10,7 @@ _The code is based on several examples._
 * _[How To Make Real Time Face Detection Using JavaScript - codeSTACKr](https://www.youtube.com/watch?v=h_Dj_gVXao4)_ 
     * Of these, mainly the structure was used.
 * _[Face Recognition from WebCam and Video Sources using JavaScript - Caffeinated Nerds](https://www.youtube.com/watch?v=h_Dj_gVXao4)_
-    * Of these, the `main.js` was used. <br><br>
+    * Of these, the `main.js` was used.<br><br>
 
 
 Das ist eine, auf Machine Learning basierte Gesichtserkennung, die den häuslichen Medizinschrank oder Putzschrank nur für verifizierte Personen öffnet.
@@ -35,7 +35,7 @@ To use the code, you must first download or clone the code.
 To do this, press the green button that says **CODE**. Either open it in *GitHub Desktop* or download the file as a *.zip file*.
 <br>
 Now you need to open the code, in your preferred development environment.
-<br><br>
+<br>
 
 In order to be able to use the code, you must create a new subfolder in the *labeled_images* folder by **right-clicking** and then clicking **New Folder**.  Name this folder after the person who is to be recognised. Load at least *two images* of this person, in which the face is clearly recognisable and unedited, into the subfolder you have just created.
 <br>
@@ -45,6 +45,7 @@ You can repeat this as many times as you like, depending on how many people you 
 You are almost there, the only thing left to do is **right click** on the `index.html` and then click on **Open with Live Server**. Now the programme starts automatically and opens it in your browser. **(It is important that it is Google Chrome, other browsers are usually not supported!)
 <br><br>
 
+---
 
 Zuerst sollte festgestellt werden das Sie Ihren Schrank mit einer Kamera ausgestattet haben oder ob eine nachgerüstet werden muss. 
 (Das bedeutet, es wird auf jeden Fall eine Kamera benötigt)
@@ -53,7 +54,7 @@ Um den Code verwenden zu können müssen Sie sich als erstes den Code herunterla
 Dafür müssen Sie auf den grünen Button, auf dem **CODE** steht, drücken. Entweder Sie öffnen es sich dann in *GitHub Desktop* oder Sie downloaden sich die Datei als *.zip Datei*. 
 <br> 
 Nun müssen Sie den Code, in dem von Ihnen bevorzugten Entwicklungsumgebung, öffnen. 
-<br><br>
+<br>
 
 Um nun den Code verwenden zu können müssen Sie im Ordner *labeled_images* einen neuen Unterordner erstellen indem Sie **Rechtsklick** klicken und dann **New Folder** anklicken.  Diesen bennen Sie nach der Person, die erkannt werden soll. Von dieser Person laden Sie mindestens *zwei Bilder*, bei denen das Gesicht gut erkennbar und unbearbeitet ist, in den eben erstellten Unterordner. 
 <br>
