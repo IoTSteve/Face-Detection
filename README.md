@@ -1,8 +1,8 @@
 # Face-Detection
 
+<img src="Steve.png" />
 This is a machine learning-based facial recognition system that opens the home medicine cabinet or cleaning cupboard only for verified persons.
 This ensures that small children or unauthorised persons cannot access medicines or cleaning products.
-<img src="Steve.png" />
 
 Our solution for this is a camera that is built into the cabinet and trained by the users themselves.
 In this way, the person is identified and the cupboard door opens or does not open accordingly.
