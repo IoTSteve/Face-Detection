@@ -2,6 +2,7 @@
 
 This is a machine learning-based facial recognition system that opens the home medicine cabinet or cleaning cupboard only for verified persons.
 This ensures that small children or unauthorised persons cannot access medicines or cleaning products.
+<img src="Steve.png" />
 
 Our solution for this is a camera that is built into the cabinet and trained by the users themselves.
 In this way, the person is identified and the cupboard door opens or does not open accordingly.
@@ -38,12 +39,15 @@ To do this, press the green button that says **CODE**. Either open it in *GitHub
 Now you need to open the code, in your preferred development environment.
 <br>
 
-In order to be able to use the code, you must create a new subfolder in the *labeled_images* folder by **right-clicking** and then clicking **New Folder**.  Name this folder after the person who is to be recognised. Load at least *two images* of this person, in which the face is clearly recognisable and unedited, into the subfolder you have just created.
+* In order to be able to use the code, you must create a new subfolder in the *labeled_images* folder by **right-clicking** and then clicking **New Folder**.  Name this folder after the person who is to be recognised. Load at least *two images* of this person, in which the face is clearly recognisable and unedited, into the subfolder you have just created.
 <br>
-In order for the code to recognise the new model, you must now change the name in the *main.js* in line 63 `if(cleanLabel == "Steve") {`. So replace `Steve` with the name of the subfolder you just created. It is also important that in line 146 `for(let i=1; i<=2; i++) {` the 2 is replaced by the number of total images. This means that if you have loaded two pictures into the folder you have just created, the total number of pictures is 4, as there are already two pictures in the example folder 'Steve'. 
-You can repeat this as many times as you like, depending on how many people you want to include. It is important that the folder names are listed in line 63 and that the number of pictures in line 146 is correct. 
+
+* In order for the code to recognise the new model, you must now change the name in the *main.js* in line 63 `if(cleanLabel == "Steve") {`. So replace `Steve` with the name of the subfolder you just created.
+* It is also important that in line 146 `for(let i=1; i<=2; i++) {` the 2 is replaced by the number of total images. This means that if you have loaded two pictures into the folder you have just created, the total number of pictures is 4, as there are already two pictures in the example folder 'Steve'. 
+* You can repeat this as many times as you like, depending on how many people you want to include. It is important that the folder names are listed in line 63 and that the number of pictures in line 146 is correct. 
 <br>
-You are almost there, the only thing left to do is **right click** on the `index.html` and then click on **Open with Live Server**. Now the programme starts automatically and opens it in your browser. (It is important that it is Google Chrome, other browsers are usually not supported!)
+
+* You are almost there, the only thing left to do is **right click** on the `index.html` and then click on **Open with Live Server**. Now the programme starts automatically and opens it in your browser. (It is important that it is Google Chrome, other browsers are usually not supported!)
 <br>
 
 ---
@@ -65,7 +69,7 @@ Nun müssen Sie den Code, in dem von Ihnen bevorzugten Entwicklungsumgebung, öf
 * Das können Sie je nachdem wie viele Personen Sie mit einbinden wollen beliebig wiederholen. Dabei ist wichtig, dass die Ordnernamen in Zeile 63 mit aufgelistet sind und dass die Anzahl der Bilder in Zeile 146 stimmt. 
 <br>
 
-* Sie sind kurz vor dem Ziel, das einzige, was Sie noch machen müssen, ist **Rechtsklick** auf die 'index.html' und dann auf **Open with Live Server** klicken. Jetzt startet das Programm automatisch und öffnet es in Ihrem Browser. ==(Dabei ist wichtig, dass es Google Chrome ist, andere Browser werden meistens nicht unterstützt!)==
+* Sie sind kurz vor dem Ziel, das einzige, was Sie noch machen müssen, ist **Rechtsklick** auf die 'index.html' und dann auf **Open with Live Server** klicken. Jetzt startet das Programm automatisch und öffnet es in Ihrem Browser. (Dabei ist wichtig, dass es Google Chrome ist, andere Browser werden meistens nicht unterstützt!)
 
 
 ## Structure / Aufbau
